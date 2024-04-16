@@ -54,7 +54,14 @@ const handleLog = function(logData) {
     'ac_comp': {'decimals': 0, levelColors: [defaultGreenColor], 'maxVal': 1}
   };
 
-  const updateGauges = (sensorValues) => {
+  const updateGauges = (row) => {
+    const currentRow = row.replace(/\r/g, '').split(',');
+    const timestamp = currentRow[0];
+    let sensorValues = currentRow.slice(1);
+
+    // string data removal
+    sensorValues = spliceMultipleIndices(sensorValues, discardedColumnIndices);
+
     sensorValues.forEach((value, idx) => {
       refreshVal = value;
 
@@ -79,14 +86,16 @@ const handleLog = function(logData) {
     isPlaying = true;
     const retInterval = setInterval(() => {
       if (currentRowIdx < rows.length) {
-        const currentRow = rows[currentRowIdx++].replace(/\r/g, '').split(',');
-        const timestamp = currentRow[0];
-        let sensorValues = currentRow.slice(1);
+        // const currentRow = rows[currentRowIdx++].replace(/\r/g, '').split(',');
+        // const timestamp = currentRow[0];
+        // let sensorValues = currentRow.slice(1);
 
-        // string data removal
-        sensorValues = spliceMultipleIndices(sensorValues, discardedColumnIndices);
+        // // string data removal
+        // sensorValues = spliceMultipleIndices(sensorValues, discardedColumnIndices);
 
-        updateGauges(sensorValues);
+        // updateGauges(sensorValues);
+        // $playbackSlider.val(currentRowIdx);
+        updateGauges(rows[currentRowIdx++]);
         $playbackSlider.val(currentRowIdx);
       } else {
         clearInterval(retInterval);
@@ -108,9 +117,6 @@ const handleLog = function(logData) {
   }
 
   const readCSV = async () => {
-    // const response = await fetch(uploadedLog);
-    // const data = (await response.text()).split('\n');
-    
     const data = logData.split('\n');
     const headers = spliceMultipleIndices(data[0].replace(/"|\r|\./g, '').split(',').slice(1), discardedColumnIndices);
     const rows = data.slice(1);
@@ -132,6 +138,7 @@ const handleLog = function(logData) {
     $playbackSlider.prop('max', rows.length);
     $playbackSlider.on('input change', function(event) {
       currentRowIdx = this.value;
+      updateGauges(rows[currentRowIdx]);
     });
 
     const $gaugesContainer = $('#gauges-container');
@@ -142,13 +149,14 @@ const handleLog = function(logData) {
       gauges[headerIdx] = new JustGage({
         id: gaugeID,
         value: 0,
+        decimals: gaugeValsObj[gaugeID]['decimals'],
+        gaugeWidthScale: 0.6,
         label: headers[headerIdx],
         labelFontColor: labelFontColor,
         levelColors: gaugeValsObj[gaugeID]['levelColors'],
         min: 0,
         max: gaugeValsObj[gaugeID]['maxVal'],
-        decimals: gaugeValsObj[gaugeID]['decimals'],
-        gaugeWidthScale: 0.6
+        refreshAnimationTime: 0
       });
     }
 
@@ -156,6 +164,7 @@ const handleLog = function(logData) {
   }
 
   $('#primary-content').show();
+  $('#log-input-container').hide();
   readCSV();
 }
 
