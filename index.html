@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>944 Sensor Gauges</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="log-input-container">
+      <input id="log-input" type="file" accept=".csv" />
+    </div>
+    <div id="primary-content">
+      <div id="gauges-container"></div>
+      <div class="controls-container">
+        <div class="playback-buttons">
+          <button class="playback-begin">Beginning</button>
+          <button class="playback-start-pause">Start/Pause</button>
+          <button class="playback-end">End</button>
+        </div>
+        <input id="playback-slider" type="range" min="0" value="0">
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+      crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
