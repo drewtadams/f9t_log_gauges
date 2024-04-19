@@ -86,15 +86,6 @@ const handleLog = function(logData) {
     isPlaying = true;
     const retInterval = setInterval(() => {
       if (currentRowIdx < rows.length) {
-        // const currentRow = rows[currentRowIdx++].replace(/\r/g, '').split(',');
-        // const timestamp = currentRow[0];
-        // let sensorValues = currentRow.slice(1);
-
-        // // string data removal
-        // sensorValues = spliceMultipleIndices(sensorValues, discardedColumnIndices);
-
-        // updateGauges(sensorValues);
-        // $playbackSlider.val(currentRowIdx);
         updateGauges(rows[currentRowIdx++]);
         $playbackSlider.val(currentRowIdx);
       } else {
@@ -169,7 +160,22 @@ const handleLog = function(logData) {
 }
 
 window.onload = function() {
-  // '133531928981442054.csv'
+  $('#demo-log-upload').on('click', () => {
+    fetch('/assets/demo_logs/133531928981442054.csv')
+      .then(response => {
+        if (!response.ok)
+          throw new Error('failed to retrieve demo file');
+        
+        return response.text();
+      })
+      .then(data => {
+        handleLog(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+
   $('#log-input').on('change', function(e) {
     const reader = new FileReader();
 

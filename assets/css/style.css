@@ -1,0 +1,54 @@
+html {
+  font-family: arial;
+}
+
+#log-input-container {
+  text-align: center;
+  padding: 25px 0;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+label {
+  align-items: flex-start;
+  background-color: buttonface;
+  border: 1px solid buttonborder;
+  border-radius: 3px;
+  border-style: outset;
+  box-sizing: border-box;
+  color: buttontext;
+  display: inline-block;
+  font-size: 14px;
+  line-height: normal;
+  margin: 0em;
+  text-align: center;
+  padding-block: 1px;
+  padding-inline: 6px;
+}
+
+#primary-content {
+  display: none;
+}
+
+#gauges-container {
+  text-align: center;
+}
+
+.gauge {
+  display: inline-block;
+}
+
+.controls-container {
+  margin-top: 25px;
+  text-align: center;
+}
+
+#playback-slider {
+  margin-top: 25px;
+  max-width: 100%;
+  width: 500px;
+}
+
+

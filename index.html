@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <title>944 Sensor Gauges</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
     <div id="log-input-container">
-      <input id="log-input" type="file" accept=".csv" />
+      <button id="demo-log-upload">Use Demo Log</button>
+      <p> - OR - </p>
+      <label for="log-upload" class="custom-file-upload">Manually Upload Log</label>
+      <input id="log-upload" type="file" accept=".csv" />
     </div>
     <div id="primary-content">
       <div id="gauges-container"></div>
@@ -23,12 +26,9 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.4/raphael-min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-      crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/raphael-2.1.4-min.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/justgage-1.2.9.min.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/jquery-3.7.1.slim.min.js"></script>
+    <script type="text/javascript" src="/assets/js/script.js"></script>
   </body>
 </html>
