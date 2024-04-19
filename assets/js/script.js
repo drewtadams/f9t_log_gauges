@@ -176,7 +176,7 @@ window.onload = function() {
       });
   });
 
-  $('#log-input').on('change', function(e) {
+  $('#log-upload').on('change', function(e) {
     const reader = new FileReader();
 
     reader.onload = function(event) {
