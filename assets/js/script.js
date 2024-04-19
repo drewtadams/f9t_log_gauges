@@ -161,7 +161,7 @@ const handleLog = function(logData) {
 
 window.onload = function() {
   $('#demo-log-upload').on('click', () => {
-    fetch('/assets/demo_logs/133531928981442054.csv')
+    fetch('assets/demo_logs/133531928981442054.csv')
       .then(response => {
         if (!response.ok)
           throw new Error('failed to retrieve demo file');
