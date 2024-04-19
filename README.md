@@ -6,7 +6,7 @@ A simple, nearly bare-bones, web-only application that let's you upload a log fi
 
 If you want to run this locally, all you need to do is spin up a local server. If you're running a windows machine, I've included `run_server.bat` at the root of this project you can utilize - simply run it and it should spin up a local python server (assuming you have python installed).
 
-If you want to use the hosted service through github, just click (here)[https://drewtadams.github.io/f9t_log_gauges/]
+If you want to use the hosted service through github, just click [here](https://drewtadams.github.io/f9t_log_gauges/).
 
 ## Getting Started
 
